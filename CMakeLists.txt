@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(mongoose_example)
+project(time_example)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -35,5 +35,5 @@ set(LIBRARIES
 )
 
 
-add_executable(mongoose_example ${SOURCE_FILES})
-target_link_libraries(mongoose_example ${LIBRARIES})
+add_executable(time_example ${SOURCE_FILES})
+target_link_libraries(time_example ${LIBRARIES})

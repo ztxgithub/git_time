@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named mongoose_example
+# Target rules for targets named time_example
 
 # Build rule for target.
-mongoose_example: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mongoose_example
-.PHONY : mongoose_example
+time_example: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 time_example
+.PHONY : time_example
 
 # fast build rule for target.
-mongoose_example/fast:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/build
-.PHONY : mongoose_example/fast
+time_example/fast:
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/build
+.PHONY : time_example/fast
 
 easylogger/elog.o: easylogger/elog.c.o
 
@@ -129,7 +129,7 @@ easylogger/elog.o: easylogger/elog.c.o
 
 # target to build an object file
 easylogger/elog.c.o:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog.c.o
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog.c.o
 .PHONY : easylogger/elog.c.o
 
 easylogger/elog.i: easylogger/elog.c.i
@@ -138,7 +138,7 @@ easylogger/elog.i: easylogger/elog.c.i
 
 # target to preprocess a source file
 easylogger/elog.c.i:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog.c.i
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog.c.i
 .PHONY : easylogger/elog.c.i
 
 easylogger/elog.s: easylogger/elog.c.s
@@ -147,7 +147,7 @@ easylogger/elog.s: easylogger/elog.c.s
 
 # target to generate assembly for a file
 easylogger/elog.c.s:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog.c.s
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog.c.s
 .PHONY : easylogger/elog.c.s
 
 easylogger/elog_port.o: easylogger/elog_port.c.o
@@ -156,7 +156,7 @@ easylogger/elog_port.o: easylogger/elog_port.c.o
 
 # target to build an object file
 easylogger/elog_port.c.o:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog_port.c.o
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog_port.c.o
 .PHONY : easylogger/elog_port.c.o
 
 easylogger/elog_port.i: easylogger/elog_port.c.i
@@ -165,7 +165,7 @@ easylogger/elog_port.i: easylogger/elog_port.c.i
 
 # target to preprocess a source file
 easylogger/elog_port.c.i:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog_port.c.i
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog_port.c.i
 .PHONY : easylogger/elog_port.c.i
 
 easylogger/elog_port.s: easylogger/elog_port.c.s
@@ -174,7 +174,7 @@ easylogger/elog_port.s: easylogger/elog_port.c.s
 
 # target to generate assembly for a file
 easylogger/elog_port.c.s:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog_port.c.s
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog_port.c.s
 .PHONY : easylogger/elog_port.c.s
 
 easylogger/elog_utils.o: easylogger/elog_utils.c.o
@@ -183,7 +183,7 @@ easylogger/elog_utils.o: easylogger/elog_utils.c.o
 
 # target to build an object file
 easylogger/elog_utils.c.o:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog_utils.c.o
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog_utils.c.o
 .PHONY : easylogger/elog_utils.c.o
 
 easylogger/elog_utils.i: easylogger/elog_utils.c.i
@@ -192,7 +192,7 @@ easylogger/elog_utils.i: easylogger/elog_utils.c.i
 
 # target to preprocess a source file
 easylogger/elog_utils.c.i:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog_utils.c.i
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog_utils.c.i
 .PHONY : easylogger/elog_utils.c.i
 
 easylogger/elog_utils.s: easylogger/elog_utils.c.s
@@ -201,7 +201,7 @@ easylogger/elog_utils.s: easylogger/elog_utils.c.s
 
 # target to generate assembly for a file
 easylogger/elog_utils.c.s:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/elog_utils.c.s
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/elog_utils.c.s
 .PHONY : easylogger/elog_utils.c.s
 
 easylogger/log.o: easylogger/log.cpp.o
@@ -210,7 +210,7 @@ easylogger/log.o: easylogger/log.cpp.o
 
 # target to build an object file
 easylogger/log.cpp.o:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/log.cpp.o
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/log.cpp.o
 .PHONY : easylogger/log.cpp.o
 
 easylogger/log.i: easylogger/log.cpp.i
@@ -219,7 +219,7 @@ easylogger/log.i: easylogger/log.cpp.i
 
 # target to preprocess a source file
 easylogger/log.cpp.i:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/log.cpp.i
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/log.cpp.i
 .PHONY : easylogger/log.cpp.i
 
 easylogger/log.s: easylogger/log.cpp.s
@@ -228,7 +228,7 @@ easylogger/log.s: easylogger/log.cpp.s
 
 # target to generate assembly for a file
 easylogger/log.cpp.s:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/easylogger/log.cpp.s
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/easylogger/log.cpp.s
 .PHONY : easylogger/log.cpp.s
 
 main.o: main.cpp.o
@@ -237,7 +237,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -246,7 +246,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -255,7 +255,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/mongoose.o: src/mongoose.c.o
@@ -264,7 +264,7 @@ src/mongoose.o: src/mongoose.c.o
 
 # target to build an object file
 src/mongoose.c.o:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/src/mongoose.c.o
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/src/mongoose.c.o
 .PHONY : src/mongoose.c.o
 
 src/mongoose.i: src/mongoose.c.i
@@ -273,7 +273,7 @@ src/mongoose.i: src/mongoose.c.i
 
 # target to preprocess a source file
 src/mongoose.c.i:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/src/mongoose.c.i
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/src/mongoose.c.i
 .PHONY : src/mongoose.c.i
 
 src/mongoose.s: src/mongoose.c.s
@@ -282,7 +282,7 @@ src/mongoose.s: src/mongoose.c.s
 
 # target to generate assembly for a file
 src/mongoose.c.s:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/src/mongoose.c.s
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/src/mongoose.c.s
 .PHONY : src/mongoose.c.s
 
 src/mongoose_timer.o: src/mongoose_timer.cpp.o
@@ -291,7 +291,7 @@ src/mongoose_timer.o: src/mongoose_timer.cpp.o
 
 # target to build an object file
 src/mongoose_timer.cpp.o:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/src/mongoose_timer.cpp.o
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/src/mongoose_timer.cpp.o
 .PHONY : src/mongoose_timer.cpp.o
 
 src/mongoose_timer.i: src/mongoose_timer.cpp.i
@@ -300,7 +300,7 @@ src/mongoose_timer.i: src/mongoose_timer.cpp.i
 
 # target to preprocess a source file
 src/mongoose_timer.cpp.i:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/src/mongoose_timer.cpp.i
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/src/mongoose_timer.cpp.i
 .PHONY : src/mongoose_timer.cpp.i
 
 src/mongoose_timer.s: src/mongoose_timer.cpp.s
@@ -309,7 +309,7 @@ src/mongoose_timer.s: src/mongoose_timer.cpp.s
 
 # target to generate assembly for a file
 src/mongoose_timer.cpp.s:
-	$(MAKE) -f CMakeFiles/mongoose_example.dir/build.make CMakeFiles/mongoose_example.dir/src/mongoose_timer.cpp.s
+	$(MAKE) -f CMakeFiles/time_example.dir/build.make CMakeFiles/time_example.dir/src/mongoose_timer.cpp.s
 .PHONY : src/mongoose_timer.cpp.s
 
 # Help Target
@@ -320,7 +320,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... mongoose_example"
+	@echo "... time_example"
 	@echo "... easylogger/elog.o"
 	@echo "... easylogger/elog.i"
 	@echo "... easylogger/elog.s"

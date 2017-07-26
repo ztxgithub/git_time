@@ -111,5 +111,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/mongoose_example.dir/DependInfo.cmake"
+  "CMakeFiles/time_example.dir/DependInfo.cmake"
   )

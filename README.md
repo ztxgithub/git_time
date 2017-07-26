@@ -93,7 +93,56 @@
     注意:
         struct timezone *tz 被废弃,一般置为NULL
         
-    
+```
+
+- 时间日期的格式控制函数
+
+```c
+
+      size_t strftime(char *str, size_t maxsize, 
+                      const char *format, const struct tm *timeptr)
+                
+      描述:
+          strftime将一个tm结构格式化为一个字符串,strftime函数对timeptr指向的tm结构
+          所代表的时间和日期进行格式编排，其结果放在字符串s中。该字符串的长度被设置为
+          maxsize个字符.格式字符串format用来对写入字符串的字符进行控制，
+          它包含着将被传送到字符串里去的普通字符以及编排时间和日期格式的转换控制符
+          
+      参数:
+        str:被赋值的头指针
+        maxsize：字符串被赋值的最大值
+        
+      返回值：
+        成功:返回有效字节数,最大是maxsize-1
+        失败:0(个数为0)
+        
+          char c_time[40];
+          memset(c_time, 0, 40);
+          time_t t = time(NULL);
+          struct tm now_time;
+          localtime_r(&t, &now_time);
+          int cnt = strftime(c_time, 40 , "%Y-%m-%d %H:%M:%S",  &now_time);
+          
+          运行结果：
+            c_time[2017-07-25 20:28:09]
+            cnt[19]
 
 ```
+- 将时间戳(time_t)转化为struct tm *格式
+```c
+
+    struct tm *localtime_r(const time_t *timep, struct tm *result);
+                
+      描述:
+          将时间戳(time_t)转化为struct tm *格式,保存在result中
+          
+      参数:
+        timep:传入参数
+        result：传出参数,保存的结果
+        
+      返回值：
+
+
+```
+
 - mktime
