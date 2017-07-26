@@ -5,7 +5,6 @@
 
 int main()
 {
-
     /*时间格式化字符*/
     char c_time[40];
     memset(c_time, 0, 40);
