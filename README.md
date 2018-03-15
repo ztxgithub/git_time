@@ -78,7 +78,7 @@
 	
     struct timeval {
                time_t      tv_sec;     /* seconds */
-               suseconds_t tv_usec;    /* microseconds */　１us = 10−6 s
+               suseconds_t tv_usec;    /* microseconds */　１us = 10^−6 s
            };
            
            
@@ -129,6 +129,7 @@
 
 ```
 - 将时间戳(time_t)转化为struct tm *格式
+
 ```c
 
     struct tm *localtime_r(const time_t *timep, struct tm *result);
@@ -142,7 +143,62 @@
         
       返回值：
 
-
 ```
 
-- mktime
+-mktime函数: 将struct tm *格式转化为时间戳(time_t)
+
+```c
+
+    time_t mktime(struct tm *timeptr);
+                
+      描述:
+          将参数timeptr所指的tm结构数据转换成从公元1970年1月1日0时0分0 秒算起至今的UTC时间所经过的秒数
+          
+      参数:
+        timeptr:传入参数 struct tm结构体
+        
+      返回值：
+            成功: 时间戳
+            失败：-1
+            
+      注意：
+        在转化为时间戳时 tm.tm_wday 和 tm.tm_yday 没有意义会被忽略,其他的tm结构体的值则有用
+```
+
+### 定时函数
+
+- setitimer函数
+
+```c
+
+    struct itimerval {  
+        struct timeval it_interval; /* next value */  
+        struct timeval it_value;    /* current value */  
+    };  
+      
+    struct timeval {  
+        time_t      tv_sec;         /* seconds */  
+        suseconds_t tv_usec;        /* microseconds */  １us = 10^−6 s
+    }; 
+    
+    int setitimer(int which, const struct itimerval *new_value, struct itimerval *old_value); 
+        
+        描述：
+            settimer工作机制是，先对it_value倒计时,当it_value为零时触发信号,然后it_value值重置为it_interval,继续对it_value倒计时,
+            一直这样循环下去.基于此机制，setitimer既可以用来延时执行,也可定时执行.
+        参数：
+            which：类型
+                    ITIMER_REAL：以系统真实的时间来计算,它送出SIGALRM信号(一般选这个)
+                    ITIMER_VIRTUAL：以该进程在用户态下花费的时间来计算,它送出SIGVTALRM信号。
+                    ITIMER_PROF：以该进程在用户态下和内核态下所费的时间来计算,它送出SIGPROF信号
+            
+            new_value：　it_interval为计时间隔，it_value为延时时长(即成功调用setitimer函数,延长it_value时间才发送信号)
+            old_value：　通常用不上,设置为NULL,它是用来存储上一次setitimer调用时设置的new_value值。
+        返回值：
+                0:成功
+                -1:失败
+                
+        注意：
+            setitimer和sleep会冲突的！因为它们都使用了信号ITIMER_REAL
+
+```
