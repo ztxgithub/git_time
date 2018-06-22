@@ -193,7 +193,7 @@
                     ITIMER_PROF：以该进程在用户态下和内核态下所费的时间来计算,它送出SIGPROF信号
             
             new_value：　it_interval为计时间隔，it_value为延时时长(即成功调用setitimer函数,延长it_value时间才发送信号)
-            old_value：　通常用不上,设置为NULL,它是用来存储上一次setitimer调用时设置的new_value值。
+            old_value：　通常用不上,设置为 NULL,它是用来存储上一次setitimer调用时设置的new_value值。
         返回值：
                 0:成功
                 -1:失败
