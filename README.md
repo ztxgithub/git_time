@@ -126,6 +126,9 @@
           运行结果：
             c_time[2017-07-25 20:28:09]
             cnt[19]
+            
+      注意:
+        时间格式(format)可以根据　> man date 命令来查看 
 
 ```
 - 将时间戳(time_t)转化为struct tm *格式
@@ -184,7 +187,8 @@
     int setitimer(int which, const struct itimerval *new_value, struct itimerval *old_value); 
         
         描述：
-            settimer工作机制是，先对it_value倒计时,当it_value为零时触发信号,然后it_value值重置为it_interval,继续对it_value倒计时,
+            settimer工作机制是，先对it_value倒计时,当it_value为零时触发信号,然后it_value值重置为it_interval,
+            继续对it_value倒计时,
             一直这样循环下去.基于此机制，setitimer既可以用来延时执行,也可定时执行.
         参数：
             which：类型
