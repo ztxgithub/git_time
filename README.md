@@ -206,3 +206,148 @@
             setitimer和sleep会冲突的！因为它们都使用了信号ITIMER_REAL
 
 ```
+
+### timerfd 定时器
+
+- 概要
+
+```shell
+    1. timerfd 是 Linux 为用户程序提供的一个定时器接口。这个接口基于文件描述符，通过文件描述符的可读事件进行超时通知，
+       因此能够被用于select/poll的应用场景
+```
+
+- timerfd_create 函数
+
+```c
+    int timerfd_create(int clockid, int flags);
+    
+    描述:
+        timerfd_create函数创建一个定时器对象，同时返回一个与之关联的文件描述符
+        
+    参数:
+        clockid: 标识指定的时钟计数器
+                 CLOCK_REALTIME: 系统实时时间,随系统实时时间改变而改变,即从UTC1970-1-1 0:0:0开始计时,
+                                 中间时刻如果系统时间被用户改成其他,则对应的时间相应改变
+                                 
+                 CLOCK_MONOTONIC:从系统启动这一刻起开始计时,不受系统时间被用户改变的影响
+                 
+        flags：  TFD_NONBLOCK: 非阻塞模式
+                 TFD_CLOEXEC: 表示当程序执行exec函数时本fd将被系统自动关闭,表示不传递
+                 
+    返回值:
+        文件描述符(定时器对象)
+```
+
+- timerfd_settime 函数
+
+```c
+    int timerfd_settime(int fd, int flags, const struct itimerspec *new_value, 
+                        struct itimerspec *old_value);
+                        
+    描述:
+         timerfd_settime() 用于设置新的超时时间，并开始计时,能够启动和停止定时器;
+            
+    参数:
+        fd: 参数 fd 是 timerfd_create 函数返回的文件句柄
+                                        
+        flags：  1:设置的是绝对时间（TFD_TIMER_ABSTIME 表示绝对定时器）
+                0: 相对时间
+                
+        new_value: 传入参数,指定定时器的超时时间以及超时间隔时间
+        old_value: 传出参数(被赋值)如果old_value不为NULL, old_vlaue被赋值为之前定时器设置的超时时间
+                 
+    返回值:
+        文件描述符(定时器对象)    
+                       
+    注意:
+        1.
+                struct itimerval {  
+                    struct timeval it_interval; /* next value, it_interval不为0则表示是周期性定时器*/  
+                    struct timeval it_value;    /* current value, Initial expiration 初始过期时间*/  
+                };  
+            
+                (1). itimerval.it_value 和 itimerval.it_interval都为 0 表示停止定时器
+                (2) 如果 itimerval.it_interval 的两个时间域都为零，则表示定时器只工作一次，
+                    即到达初始过期时间后(itimerval.it_value)就停止工作，非周期性
+```
+
+- timerfd_gettime 函数
+
+```c 
+    int timerfd_gettime(int fd, struct itimerspec *curr_value);
+    
+     描述:
+         timerfd_gettime() 函数获取距离下次超时剩余的时间
+            
+    参数:
+        fd: 参数 fd 是 timerfd_create 函数返回的文件句柄
+                                       
+        curr_value: 传出参数(被赋值) 
+                    curr_value.it_value 字段表示距离下次超时的时间，如果值为0，表示计时器已经解除
+                    curr_value.it_value永远是一个相对值，无论TFD_TIMER_ABSTIME是否被设置
+                    curr_value.it_interval 定时器间隔时间
+                 
+    返回值:
+        文件描述符(定时器对象)    
+                           
+```
+
+-  clock_gettime 函数
+
+```shell
+    int clock_gettime(clockid_t clk_id, struct timespec *tp);
+    
+     描述:
+         clock_gettime() 函数获取时间信息
+            
+    参数:
+        clk_id: 标识指定的时钟计数器
+                    CLOCK_REALTIME: 系统实时时间,随系统实时时间改变而改变,即从UTC1970-1-1 0:0:0开始计时,
+                                    中间时刻如果系统时间被用户改成其他,则对应的时间相应改变
+                    CLOCK_MONOTONIC:从系统启动这一刻起开始计时,不受系统时间被用户改变的影响
+                    CLOCK_PROCESS_CPUTIME_ID:本进程到当前代码系统CPU花费的时间
+                    CLOCK_THREAD_CPUTIME_ID:本线程到当前代码系统CPU花费的时间
+                                       
+        tp: 传出参数(被赋值) 
+                  
+                 
+    返回值:
+        0: 成功
+              
+    注意:
+        1.clock_gettime 可以用做获取当前的系统时间(clk_id 设置为 CLOCK_REALTIME)
+    
+```
+
+- 注意
+
+```shell
+    1.可以用 read 函数读取计时器的超时次数, 
+            uint64_t exp = 0;
+            read(fd, &exp, sizeof(uint64_t)); // 其中 fd 为 timerfd_create 函数返回的文件句柄
+            
+    2. 例子:
+            (1) 采用相对时间
+                    
+                    struct itimerspec new_value;
+                    
+                    new_value.it_value.tv_sec = 2;
+                    new_value.it_value.tv_nsec = 0;
+                    new_value.it_interval.tv_sec = 1;
+                    new_value.it_interval.tv_nsec = 0;
+                    
+                    tmfd = timerfd_create(CLOCK_MONOTONIC, 0);
+                    ret = timerfd_settime(tmfd, 0, &new_value, NULL);
+                    
+            (2) 采用绝对时间
+                     struct timespec now;
+                     clock_gettime(CLOCK_REALTIME, &now);
+                     
+                      struct itimerspec new_value;
+                     new_value.it_value.tv_sec = now.tv_sec + atoi(argv[1]); // it_value指的是第一次到期的时间
+                     new_value.it_value.tv_nsec = now.tv_nsec; 
+                     new_value.it_interval.tv_sec = 4; 
+                     
+                     fd = timerfd_create(CLOCK_REALTIME, 0); // 构建了一个定时器
+                     timerfd_settime(fd, TFD_TIMER_ABSTIME, &new_value, NULL)
+```
