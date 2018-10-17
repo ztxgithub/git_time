@@ -257,7 +257,8 @@
         old_value: 传出参数(被赋值)如果old_value不为NULL, old_vlaue被赋值为之前定时器设置的超时时间
                  
     返回值:
-        文件描述符(定时器对象)    
+        0: suceess
+        -1: fail 
                        
     注意:
         1.
@@ -288,7 +289,8 @@
                     curr_value.it_interval 定时器间隔时间
                  
     返回值:
-        文件描述符(定时器对象)    
+        0: suceess
+        -1: fail
                            
 ```
 
