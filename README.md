@@ -213,7 +213,7 @@
 
 ```shell
     1. timerfd 是 Linux 为用户程序提供的一个定时器接口。这个接口基于文件描述符，通过文件描述符的可读事件进行超时通知，
-       因此能够被用于select/poll的应用场景
+       因此能够被用于 select/poll 的应用场景
 ```
 
 - timerfd_create 函数
@@ -222,11 +222,11 @@
     int timerfd_create(int clockid, int flags);
     
     描述:
-        timerfd_create函数创建一个定时器对象，同时返回一个与之关联的文件描述符
+        timerfd_create 函数创建一个定时器对象，同时返回一个与之关联的文件描述符
         
     参数:
         clockid: 标识指定的时钟计数器
-                 CLOCK_REALTIME: 系统实时时间,随系统实时时间改变而改变,即从UTC1970-1-1 0:0:0开始计时,
+                 CLOCK_REALTIME: 系统实时时间,随系统实时时间改变而改变,即从 UTC1970-1-1 0:0:0开始计时,
                                  中间时刻如果系统时间被用户改成其他,则对应的时间相应改变
                                  
                  CLOCK_MONOTONIC:从系统启动这一刻起开始计时,不受系统时间被用户改变的影响
